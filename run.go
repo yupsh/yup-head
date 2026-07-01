@@ -11,6 +11,8 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
+const name = "head"
+
 const (
 	flagLines = "lines"
 	flagBytes = "bytes"
@@ -38,7 +40,7 @@ func run(version string, args []string, stdin io.Reader, stdout, stderr io.Write
 	cmd.Writer = stdout
 	cmd.ErrWriter = stderr
 	if err := cmd.Run(context.Background(), args); err != nil {
-		_, _ = fmt.Fprintf(stderr, "head: %v\n", err)
+		_, _ = fmt.Fprintf(stderr, name+": %v\n", err)
 		return 1
 	}
 	return 0
@@ -46,7 +48,7 @@ func run(version string, args []string, stdin io.Reader, stdout, stderr io.Write
 
 func newApp(version string, stdin io.Reader, stdout io.Writer, fs afero.Fs) *cli.Command {
 	return &cli.Command{
-		Name:            "head",
+		Name:            name,
 		Version:         version,
 		Usage:           "output the first part of files",
 		UsageText:       usageText,

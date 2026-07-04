@@ -1,21 +1,9 @@
-# yup-head
+[![actions](https://github.com/yupsh/yup-head/actions/workflows/actions.yml/badge.svg)](https://github.com/yupsh/yup-head/actions/workflows/actions.yml)
+[![ci](https://github.com/yupsh/yup-head/actions/workflows/ci.yml/badge.svg)](https://github.com/yupsh/yup-head/actions/workflows/ci.yml)
+[![dockerfiles](https://github.com/yupsh/yup-head/actions/workflows/dockerfiles.yml/badge.svg)](https://github.com/yupsh/yup-head/actions/workflows/dockerfiles.yml)
+[![docs](https://github.com/yupsh/yup-head/actions/workflows/docs.yml/badge.svg)](https://github.com/yupsh/yup-head/actions/workflows/docs.yml)
+[![go](https://github.com/yupsh/yup-head/actions/workflows/go.yml/badge.svg)](https://github.com/yupsh/yup-head/actions/workflows/go.yml)
+[![release](https://github.com/yupsh/yup-head/actions/workflows/release.yml/badge.svg)](https://github.com/yupsh/yup-head/actions/workflows/release.yml)
+[![shell](https://github.com/yupsh/yup-head/actions/workflows/shell.yml/badge.svg)](https://github.com/yupsh/yup-head/actions/workflows/shell.yml)
 
-```
-NAME:
-   head - output the first part of files
-
-USAGE:
-   head [OPTIONS] [FILE...]
-
-   Print the first 10 lines of each FILE to standard output.
-   With no FILE, or when FILE is -, read standard input.
-
-VERSION:
-   dev
-
-GLOBAL OPTIONS:
-   --lines int, -n int  print the first NUM lines instead of the first 10 (default: 10)
-   --bytes int, -c int  print the first NUM bytes (default: 0)
-   --help, -h           show help
-   --version            print version information and exit
-```
+[docs](https://yupsh.github.io/docs.repl/)

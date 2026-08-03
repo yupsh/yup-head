@@ -37,8 +37,15 @@ var spec = clix.Spec{
 			Aliases: []string{"n"},
 			Value:   10,
 			Usage:   "print the first NUM lines instead of the first 10",
+			Sources: urf.EnvVars("YUP_HEAD_LINES"),
 		},
-		&urf.IntFlag{Name: flagBytes, Aliases: []string{"c"}, Usage: "print the first NUM bytes"},
+		&urf.IntFlag{
+			Name:    flagBytes,
+			Aliases: []string{"c"},
+			Usage:   "print the first NUM bytes",
+			Value:   0,
+			Sources: urf.EnvVars("YUP_HEAD_BYTES"),
+		},
 	},
 }
 

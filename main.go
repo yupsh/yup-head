@@ -31,22 +31,7 @@ var spec = clix.Spec{
 	Summary:  "output the first part of files",
 	Synopsis: synopsis,
 	Build:    build,
-	Flags: []urf.Flag{
-		&urf.IntFlag{
-			Name:    flagLines,
-			Aliases: []string{"n"},
-			Value:   10,
-			Usage:   "print the first NUM lines instead of the first 10",
-			Sources: urf.EnvVars("YUP_HEAD_LINES"),
-		},
-		&urf.IntFlag{
-			Name:    flagBytes,
-			Aliases: []string{"c"},
-			Usage:   "print the first NUM bytes",
-			Value:   0,
-			Sources: urf.EnvVars("YUP_HEAD_BYTES"),
-		},
-	},
+	Flags:    flags(),
 }
 
 // build maps the invocation to head's pipeline: a file-or-stdin source into the
@@ -72,3 +57,33 @@ func options(c *urf.Command) []any {
 var runMain = clix.Main
 
 func main() { runMain(spec, version) }
+
+// flags builds a FRESH flag set on every call.
+//
+// urfave/cli flags carry mutable parse state: once a flag is supplied, its
+// hasBeenSet stays true for the life of the value. A package-level slice shared
+// across two parses therefore reports the second parse as having flags only the
+// FIRST one set, and IsSet stops meaning "the user asked for this".
+//
+// The shared gate runs every suite with -count=2 in one process, which is
+// exactly that shape — the first pass sets the flag, the second sees it already
+// set. Building fresh keeps one definition while giving each parse its own
+// state.
+func flags() []urf.Flag {
+	return []urf.Flag{
+		&urf.IntFlag{
+			Name:    flagLines,
+			Aliases: []string{"n"},
+			Value:   10,
+			Usage:   "print the first NUM lines instead of the first 10",
+			Sources: urf.EnvVars("YUP_HEAD_LINES"),
+		},
+		&urf.IntFlag{
+			Name:    flagBytes,
+			Aliases: []string{"c"},
+			Usage:   "print the first NUM bytes",
+			Value:   0,
+			Sources: urf.EnvVars("YUP_HEAD_BYTES"),
+		},
+	}
+}
